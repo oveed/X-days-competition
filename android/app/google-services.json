@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "933050579511",
+    "project_id": "xdays-cf9ae",
+    "storage_bucket": "xdays-cf9ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933050579511:android:b68c97d55ef2ab8ca29db2",
+        "android_client_info": {
+          "package_name": "com.xdays.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy0ZEyCTBDiJkdOtfwfOHTul8wQ44puOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
