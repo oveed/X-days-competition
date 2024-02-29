@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(SinginPage());
+  runApp(MaterialApp(
+    title: 'Your App Title',
+    home: SignInPage(),
+  ));
 }
 
-class SinginPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  //It redirects the user to the home screen if they are logged in, otherwise it shows the login screen.
   Widget _handleAuth() {
     return StreamBuilder<User?>(
       stream: _auth.authStateChanges(),
@@ -34,12 +41,50 @@ class SinginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Firebase Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sign Up'),
+        backgroundColor: Color(0xFF04D7B7),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            margin: const EdgeInsets.all(10),
+            alignment: Alignment.center,
+            child: SvgPicture.asset(
+              'assets/back-arrow.svg',
+              height: 40,
+              width: 40,
+            ),
+          ),
+        ),
+        elevation: 0.0,
       ),
-      home: _handleAuth(),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+            SizedBox(height: 8.0),
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(labelText: 'Password'),
+              obscureText: true,
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: _signUp,
+              child: Text('Sign Up'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
