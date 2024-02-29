@@ -33,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  final green = Color(0xFF04D7B7);
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -181,12 +181,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: new Center(
+      body: Center(
         child: Column(
           children: [
             Container(
               child: Column(
                 children: [
+                  SizedBox(height: 300),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -195,13 +196,28 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                     child: Container(
-                      child: Text('Sign up'),
+                      decoration: BoxDecoration(
+                          color: green,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: 100,
+                      height: 40,
+                      child: Center(
+                        child: Text('Sign up'),
+                      ),
                     ),
                   ),
+                  SizedBox(height: 10),
                   GestureDetector(
                     onTap: () {},
                     child: Container(
-                      child: Text('Sign in'),
+                      decoration: BoxDecoration(
+                          color: green,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: 100,
+                      height: 40,
+                      child: Center(
+                        child: Text('Sign in'),
+                      ),
                     ),
                   ),
                 ],
