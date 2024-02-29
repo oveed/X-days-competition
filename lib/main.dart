@@ -22,12 +22,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future<void> _signUp() async {
     try {
-      final email = _emailController.text.trim(); // Trim email input
-      final password =
-          _passwordController.text; // No need to trim password input
+      final email = _emailController.text.trim();
+      final password = _passwordController.text;
 
       if (email.isEmpty || password.isEmpty) {
-        // Check for empty fields
         print('Email and password are required.');
         return;
       }
@@ -37,22 +35,16 @@ class _SignUpPageState extends State<SignUpPage> {
         email: email,
         password: password,
       );
-      // Navigate to the home screen after successful sign-up
       Navigator.of(context).pushReplacementNamed('/home');
     } on FirebaseAuthException catch (e) {
-      // Handle sign-up errors
       if (e.code == 'weak-password') {
-        // Weak password error
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        // Email already in use error
         print('The account already exists for that email.');
       } else {
-        // Other errors
         print('Error occurred: ${e.message}');
       }
     } catch (e) {
-      // Handle other errors
       print('Error occurred: $e');
     }
   }
